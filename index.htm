@@ -1,0 +1,168 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>ithre</title>
+  <style type="text/css">
+    body {
+      font-family: verdana, arial, sans-serif;
+      font-size: 10pt;
+      margin: 30px;
+      background-color: #ffcc00;
+			text-align: center;
+    }
+  </style>
+</head>
+
+<body cz-shortcut-listen="true">
+  <select class="" name="lerset" onchange="drata();">
+    <option value="vc">Cases</option>
+    <option value="vc_trs">Transrelative Cases</option>
+    <option value="vc_pos">Possessive Cases</option>
+    <option value="vc_aso">Associative Cases</option>
+    <option value="vc_tem">Temporal Cases</option>
+    <option value="vc_spa">Spatial Cases</option>
+    <option value="ca">Ca</option>
+    <option value="ca_del">Ca (DEL)</option>
+    <option value="vs">Vocalic Aspects</option>
+    <option value="cs">Consonantal Aspects</option>
+    <option value="modality">Modality</option>
+    <option value="numbers_100">Numbers to 100</option>
+    <option value="numbers_10 ">Numbers to 10</option>
+    <option value="numbers_recog_100">Number Recognition to 100</option>
+    <option value="numbers_recog_10">Number Recognition to 10</option>
+		<option value="function_recog">Function Recognition</option>
+    <option value="stem_function_conjugation">Function Conjugation</option>
+    <option value="stem_function_conjugation_1_3">Function Conjugation 1-3</option>
+    <option value="stem_function_conjugation_4_6">Function Conjugation 4-6</option>
+    <option value="stem_function_conjugation_7_9">Function Conjugation 7-9</option>
+  </select>
+  <br>
+  <p id="trans" type="text" autofocus="" style="margin-right:15px;"></p>
+  <input id="typehere" autofocus="" style="margin-right:15px;" type="text">
+	<p id="drani" type="text" autofocus="" style="margin-right:15px;">&nbsp;</p>
+  <button id="bt" type="button" onclick="sendinput();" class="but" style="width:auto;">check</button>
+  <script src="data.js"></script>
+  <script src="jquery.js"></script>
+  <script>
+    var va = '';
+    var sendinput = function() {
+      if ($("#typehere").val() === va) {
+        $("#typehere").val('');
+        $("#drani").html("&nbsp;");
+        drata();
+      } else {
+        $("#typehere").val('');
+        $("#drani").html("correct: " + va);
+      }
+    }
+    $(document).ready(function() {
+      drata();
+    });
+
+    function randomKey(obj) {
+      var ret;
+      var c = 0;
+      for (var key in obj)
+        if (Math.random() < 1 / ++c)
+          ret = key;
+      return ret;
+    }
+    var drata = function() {
+      switch ($('[name="lerset"]').val()) {
+        case "ca_del":
+          var lerset = ca_del;
+          break;
+
+        case "cs":
+          var lerset = cs;
+          break;
+
+        case "vs":
+          var lerset = vs;
+          break;
+
+        case "vc_aso":
+          var lerset = vc_aso;
+          break;
+
+        case "vc":
+          var lerset = vc;
+          break;
+
+        case "function_recog":
+          var lerset = function_recog;
+          break;
+
+        case "modality":
+          var lerset = modality;
+          break;
+
+        case "numbers_100":
+          var lerset = numbers_100;
+          break;
+
+        case "numbers_10 ":
+          var lerset = numbers_10;
+          break;
+
+        case "numbers_recog_100":
+          var lerset = numbers_recog_100;
+          break;
+
+        case "numbers_recog_10":
+          var lerset = numbers_recog_10;
+          break;
+
+        case "vc_pos":
+          var lerset = vc_pos;
+          break;
+
+        case "vc_spa":
+          var lerset = vc_spa;
+          break;
+
+        case "stem_function_conjugation_1_3":
+          var lerset = stem_function_conjugation_1_3;
+          break;
+
+        case "stem_function_conjugation_4_6":
+          var lerset = stem_function_conjugation_4_6;
+          break;
+
+        case "stem_function_conjugation_7_9":
+          var lerset = stem_function_conjugation_7_9;
+          break;
+
+        case "stem_function_conjugation":
+          var lerset = stem_function_conjugation;
+          break;
+
+        case "vc_tem":
+          var lerset = vc_tem;
+          break;
+
+        case "vc_trs":
+          var lerset = vc_trs;
+          break;
+
+        case "ca":
+          var lerset = ca;
+          break;
+
+				default:
+					var lerset = ca;
+      }
+      var k = randomKey(lerset);
+      va = lerset[k];
+      $("#trans").html(k);
+    }
+
+    $('#typehere').bind('keyup', function(e) {
+      if (e.keyCode === 13) { // 13 is enter key
+        sendinput();
+      }
+    });
+  </script>
+</body>
+
+</html>
